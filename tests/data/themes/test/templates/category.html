@@ -1,0 +1,12 @@
+{% extends "blog_index.html" %}
+
+{% set posts = category.posts %}
+
+{% block content %}
+<div>
+    {% block content_title %}
+        <h2>Posts filled under <i>{{ category.name }}</i></h2>
+    {% endblock %}
+</div>
+{{ super() }}
+{% endblock %}

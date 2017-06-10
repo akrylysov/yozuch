@@ -1,0 +1,8 @@
+include LICENSE
+include README.rst
+recursive-include tests/compiled-data *
+recursive-include tests/compiled-data-validator *
+recursive-include tests/data *
+recursive-include tests/data-invalid *
+recursive-include yozuch/templates *
+recursive-include yozuch/themes *

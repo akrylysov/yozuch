@@ -1,0 +1,146 @@
+<html>
+<head>
+    <title>Test</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    
+        <div>
+            <h1>Site title</h1>
+        </div>
+    
+
+    
+    <div>
+        <div>
+            <ul>
+                <li>October 02, 2013</li>
+                
+                <li><a href="/tag/tag1/">tag1</a></li>
+                
+            </ul>
+        </div>
+        <h2>测试</h2>
+        <p>内容</p>
+<p><em>emphasis</em></p>
+<p><strong>strong</strong></p>
+<p><span class="docutils literal">literal</span></p>
+<ul class="simple">
+<li><p>This is a bulleted list.</p></li>
+<li><p>It has two items, the second
+item uses two lines.</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>This is a numbered list.</p></li>
+<li><p>It has two items too.</p></li>
+<li><p>This is a numbered list.</p></li>
+<li><p>It has two items too.</p></li>
+</ol>
+<ul class="simple">
+<li><p>this is</p></li>
+<li><p>a list</p>
+<ul>
+<li><p>with a nested list</p></li>
+<li><p>and some subitems</p></li>
+</ul>
+</li>
+<li><p>and here the parent list continues</p></li>
+</ul>
+<div class="line-block">
+<div class="line">These lines are</div>
+<div class="line">broken exactly like in</div>
+<div class="line">the source file.</div>
+</div>
+<table>
+<colgroup>
+<col style="width: 43%" />
+<col style="width: 21%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr><th class="head"><p>Header row, column 1
+(header rows optional)</p></th>
+<th class="head"><p>Header 2</p></th>
+<th class="head"><p>Header 3</p></th>
+<th class="head"><p>Header 4</p></th>
+</tr>
+</thead>
+<tbody>
+<tr><td><p>body row 1, column 1</p></td>
+<td><p>column 2</p></td>
+<td><p>column 3</p></td>
+<td><p>column 4</p></td>
+</tr>
+<tr><td><p>body row 2</p></td>
+<td><p>...</p></td>
+<td><p>...</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 29%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr><th class="head"><p>A</p></th>
+<th class="head"><p>B</p></th>
+<th class="head"><p>A and B</p></th>
+</tr>
+</thead>
+<tbody>
+<tr><td><p>False</p></td>
+<td><p>False</p></td>
+<td><p>False</p></td>
+</tr>
+<tr><td><p>True</p></td>
+<td><p>False</p></td>
+<td><p>False</p></td>
+</tr>
+<tr><td><p>False</p></td>
+<td><p>True</p></td>
+<td><p>False</p></td>
+</tr>
+<tr><td><p>True</p></td>
+<td><p>True</p></td>
+<td><p>True</p></td>
+</tr>
+</tbody>
+</table>
+<pre class="code python literal-block"><code><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">'yozuch'</span><span class="p">)</span>
+
+ <span class="k">class</span> <span class="nc">RejectFilter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Filter</span><span class="p">):</span>
+
+     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reject</span><span class="p">):</span>
+         <span class="n">logging</span><span class="o">.</span><span class="n">Filter</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">reject</span> <span class="o">=</span> <span class="n">reject</span>
+
+     <span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+         <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">reject</span><span class="p">(</span><span class="n">record</span><span class="p">)</span></code></pre>
+<p><a class="reference external" href="/url1.html">Internal page reference</a>
+<a class="reference external" href="/blog/2011/01/01/post-readmore/">Internal post reference</a></p>
+<img alt="" src="image.png" />
+
+    </div>
+
+    
+    <div>
+        
+            <div class="left">←&nbsp;<a href="/blog/2013/09/20/post-file-metadata/" title="Previous post">Title</a></div>
+        
+        
+    </div>
+    
+    
+
+    
+    
+        <footer class="row">
+            <p>Footer</p>
+        </footer>
+    
+</body>
+</html>

@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>Test</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    {% block header %}
+        <div>
+            <h1>{{ site.title }}</h1>
+        </div>
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+    
+    {% block footer %}
+        <footer class="row">
+            <p>Footer</p>
+        </footer>
+    {% endblock %}
+</body>
+</html>

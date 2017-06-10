@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% set subtitle = 'Tags' -%}
+
+{% block content %}
+    <div>
+        {% block content_title %}
+            <h2>Tags</h2>
+        {% endblock %}
+        <ul class="no-bullet">
+        {% for tag in site.tags %}
+            <li><a href="{{ tag.url }}">{{ tag.name }}</a> ({{ tag.posts|length }} posts)</li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

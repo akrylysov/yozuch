@@ -1,0 +1,22 @@
+{% if config.DEBUG %}
+<script>
+    try {
+        window.document.title = 'Preview mode! | ' + window.document.title;
+        var host = 'ws://' + window.location.hostname + ':{{ config.NOTIFICATION_SERVER_PORT }}/';
+        var socket = new WebSocket(host);
+        socket.onopen = function() { console.log('AutoReload: connected'); };
+        socket.onclose = function() { console.log('AutoReload: closed'); };
+        socket.onerror = function() { console.log('AutoReload: error'); };
+        socket.onmessage = function(event) {
+            console.log('AutoReload: message', event);
+            if (event.data === 'reload') {
+                socket.close();
+                window.location.reload();
+            }
+        };
+    }
+    catch (e) {
+        console.log('AutoReload: error', e);
+    }
+</script>
+{% endif %}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    {% block head %}
+
+        {% block head_meta %}
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+            {% if site.description %}
+            <meta name="description" content="{{ site.description }}" />
+            {% endif %}
+
+            {% if url_exists_for('atom-feed') %}
+            <link rel="alternate" type="application/atom+xml" title="Blog feed" href="{{ url_for('atom-feed') }}" />
+            {% endif %}
+        {% endblock %}
+
+        <title>{% block title %}{% if subtitle %}{{ subtitle }} - {% endif %}{{ site.title }}{% endblock %}</title>
+
+        {% block head_styles %}
+            <link rel="stylesheet" href="{{ url_for('assets', filename='css/foundation.min.css') }}" />
+            <link rel="stylesheet" href="{{ url_for('assets', filename='css/yozuch.css') }}" />
+            <link rel="stylesheet" href="{{ url_for('assets', filename='css/pygments.css') }}" />
+        {% endblock %}
+
+        {% block head_scripts %}
+            {% include 'includes/auto_reload.html' %}
+        {% endblock %}
+
+        {% block foot_scripts %}
+            {% include 'includes/google_analytics.html' %}
+        {% endblock %}
+
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+    <div class="row">
+        <div class="large-10 large-centered columns">
+        {% block header %}
+            <header>
+                <a href="{{ url_for(theme.logo_url) }}"><h1>{{ site.title }}</h1></a>
+                <nav>
+                    <ul class="inline-list navigation">
+                        {% for caption, id_or_url in theme.navigation %}
+                            {% if id_or_url == page_id or id_or_url == page_url %}
+                                <li>{{ caption }}</li>
+                            {% else %}
+                                <li><a href="{{ url_for(id_or_url) }}">{{ caption }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </nav>
+                <hr />
+            </header>
+        {% endblock %}
+
+        {% block content %}
+        {% endblock %}
+
+        {% block footer %}
+            <footer>
+                <hr />
+                {% block footer_content %}
+                    <span class="float-left">
+                        {% block footer_copyright %}Copyright &copy; {{ site.time.year }} {{ site.author }}. Powered by <a href="https://github.com/akrylysov/yozuch" target="_blank">Yozuch</a>.{% endblock %}
+                    </span>
+                    <span class="float-right">
+                        {% if theme.github_profile_url %}
+                            <a href="{{ theme.github_profile_url }}" target="_blank"><img class="social" title="GitHub" alt="GitHub" src="{{ url_for('assets', filename='img/github.svg') }}"/></a>
+                        {% endif %}
+                        {% if theme.twitter_profile_url %}
+                            <a href="{{ theme.twitter_profile_url }}" target="_blank"><img class="social" title="Twitter" alt="Twitter" src="{{ url_for('assets', filename='img/twitter.svg') }}"/></a>
+                        {% endif %}
+                    </span>
+                {% endblock %}
+            </footer>
+        {% endblock %}
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

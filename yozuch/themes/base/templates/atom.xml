@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>{{ site.title }}</title>
+    <link href="{{ site.url }}{{ url_for('atom-feed') }}" rel="self"/>
+    <link href="{{ site.url }}/"/>
+    <updated>{{ site.time.isoformat("T") }}Z</updated>
+    <id>{{ site.url }}/</id>
+    <author>
+        <name>{{ site.author }}</name>
+    </author>
+
+    {% for post in site.posts %}
+    <entry>
+        <title><![CDATA[{{ post.title|striptags }}]]></title>
+        <link href="{{ site.url }}{{ post.url }}"/>
+        <updated>{{ post.date.isoformat("T") }}Z</updated>
+        <id>{{ site.url }}{{ post.url }}</id>
+        <content type="html">
+            <![CDATA[{{ post.content }}]]>
+        </content>
+    </entry>
+    {% endfor %}
+</feed>

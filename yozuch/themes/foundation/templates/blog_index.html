@@ -1,0 +1,56 @@
+﻿{% extends "base.html" %}
+
+{%  if page_url != '/' %}
+    {% set subtitle = subtitle|default('Blog') -%}
+{% endif %}
+
+{% if paginator %}
+    {% set posts = paginator_page.entries -%}
+{% else %}
+    {% set posts = posts|default(site.posts) -%}
+{% endif %}
+
+{% block content %}
+    {% for post in posts %}    
+    <article class="post">
+        <a href="{{ post.url }}"><h2>{{ post.title|striptags }}</h2></a>
+
+        {% include 'includes/post_meta.html' %}
+        
+        {% if post.summary %}
+            {{ post.summary }}
+            <div class="readmore"><a href="{{ post.url }}">Read more&nbsp;→</a></div>
+        {% else %}
+            {{ post.content }}
+        {% endif %}
+
+        {% if theme.disqus_display_comment_count and theme.disqus_shortname %}
+            <a href="{{ post.url }}#disqus_thread">Leave a comment</a>
+        {% endif %}
+
+        {% if not loop.last %}<hr />{% endif %}
+    </article>
+    {% endfor %}
+
+    {% if paginator %}
+    <div class="row large-up-3 paginator">
+        <div class="column text-left">
+            {% if paginator_page.previtem %}
+                <a href="{{ paginator_page.previtem.url }}">←&nbsp;Older posts</a>
+            {% endif %}
+        </div>
+
+        <div class="column text-center">
+            Page {{ paginator_page.number }} of {{ paginator.number_of_pages }}
+        </div>
+
+        <div class="column text-right">
+            {% if paginator_page.nextitem %}
+                <a href="{{ paginator_page.nextitem.url }}">Newer posts&nbsp;→</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% include 'includes/disqus_comment_count.html' %}
+{% endblock %}

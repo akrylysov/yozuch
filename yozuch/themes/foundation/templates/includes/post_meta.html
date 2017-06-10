@@ -1,0 +1,12 @@
+<div class="meta">
+    <ul class="inline-list">
+        <li><span class="date">{{ post.date.strftime(theme.post_date_format) }}</span></li>
+        {% if post.category %}
+        <li><a href="{{ post.category.url }}"><span class="label category">{{ post.category.name }}</span></a></li>
+        {% endif %}
+        {% for tag in post.tags %}
+        <li><a href="{{ tag.url }}"><span class="secondary label tag">{{ tag.name }}</span></a></li>
+        {% endfor %}
+    </ul>
+</div>
+

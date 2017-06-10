@@ -1,0 +1,4 @@
+docutils>=0.13.1
+pygments>=2.2.0
+jinja2>=2.9.6
+watchdog>=0.8.3

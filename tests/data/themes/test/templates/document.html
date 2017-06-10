@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    {% block document_title %}<h2>{{ document.title|striptags }}</h2>{% endblock %}
+    {{ document.content }}
+</div>
+{% endblock %}
+

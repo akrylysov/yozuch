@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div>
+        <div>
+            <ul>
+                <li>{{ post.date.strftime('%B %d, %Y') }}</li>
+                {% for tag in post.tags %}
+                <li><a href="{{ tag.url }}">{{ tag.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% block document_title %}<h2>{{ post.title|striptags }}</h2>{% endblock %}
+        {{ post.content }}
+    </div>
+
+    {% if post.previtem or post.nextitem %}
+    <div>
+        {% if post.previtem %}
+            <div class="left">←&nbsp;<a href="{{ post.previtem.url }}" title="Previous post">{{ post.previtem.title|striptags }}</a></div>
+        {% endif %}
+        {% if post.nextitem %}
+            <div class="right"><a href="{{ post.nextitem.url }}" title="Next post">{{ post.nextitem.title|striptags }}</a>&nbsp;→</div>
+        {% endif %}
+    </div>
+    {% endif %}
+    
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <ul>
+    {% for tag in site.tags %}
+        <li><a href="{{ tag.url }}">{{ tag.name }}</a> ({{ tag.posts|length }} posts)</li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}

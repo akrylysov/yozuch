@@ -1,0 +1,12 @@
+{% extends "blog_index.html" %}
+
+{% set posts = tag.posts %}
+
+{% block content %}
+<div>
+    {% block content_title %}
+        <h2>Posts tagged with <i>{{ tag.name }}</i></h2>
+    {% endblock %}
+</div>
+{{ super() }}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>    
+    <ul>
+    {% for post in site.posts %}
+        <li>{{ post.date.strftime('%B %d, %Y') }}&nbsp;<a href="{{ post.url }}">{{ post.title|striptags }}</a></li>
+    {% endfor %}  
+    </ul>
+</div>
+{% endblock %}

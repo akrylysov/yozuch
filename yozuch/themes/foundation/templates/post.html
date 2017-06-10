@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% set subtitle = post.title|striptags -%}
+
+{% block content %}
+    <article class="post">
+        {% block post_title %}<h2>{{ post.title|striptags }}</h2>{% endblock %}
+
+        {% include 'includes/post_meta.html' %}
+
+        {{ post.content }}
+    </article>
+
+    {% block content_after_article %}
+        {% if post.previtem or post.nextitem %}
+        <div class="post-nav">
+        {% if post.previtem %}
+            <div class="float-left">←&nbsp;<a href="{{ post.previtem.url }}" title="Previous post">{{ post.previtem.title|striptags }}</a></div>
+        {% endif %}
+        {% if post.nextitem %}
+            <div class="float-right"><a href="{{ post.nextitem.url }}" title="Next post">{{ post.nextitem.title|striptags }}</a>&nbsp;→</div>
+        {% endif %}
+        </div>
+        {% endif %}
+
+        {% include 'includes/disqus_comments.html' %}
+    {% endblock %}
+
+{% endblock %}

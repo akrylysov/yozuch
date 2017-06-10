@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% set subtitle = document.title|striptags -%}
+
+{% block content %}
+    <article class="post">
+        {% block document_title %}<h2>{{ document.title|striptags }}</h2>{% endblock %}
+        {{ document.content }}
+    </article>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% set subtitle = subtitle|default('Archive') -%}
+
+{% block content %}
+    <div>
+        {% block content_title %}
+            <h2>Archive</h2>
+        {% endblock %}
+        <ul class="no-bullet">
+        {% for post in site.posts %}
+            <li><span class="date">{{ post.date.strftime(theme.archive_date_format) }}&nbsp;</span><a href="{{ post.url }}">{{ post.title|striptags }}</a></li>
+        {% endfor %}  
+        </ul>
+    </div>
+{% endblock %}
