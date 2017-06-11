@@ -39,7 +39,7 @@ def serve(directory, build_command, ports):
     autoreload_server_thread = Thread(target=autoreload_server.start, args=(autoreload_server_port,))
     autoreload_server_thread.start()
 
-    logger.info('Serving content on http://localhost:{}/'.format(http_server_port))
+    logger.info('Serving content on http://127.0.0.1:{}/'.format(http_server_port))
     logger.info('Auto reload server on port {}'.format(autoreload_server_port))
     logger.info('Press "Ctrl+C" to exit')
 

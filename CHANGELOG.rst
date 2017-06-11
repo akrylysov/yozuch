@@ -1,5 +1,5 @@
-Version 0.8.0 (2017-?-?)
-------------------------
+Version 0.8.0 (2017-06-10)
+--------------------------
 - Add Speaker Deck plugin.
 - Drop Python 2 support.
 - Theme: Fix styles for numeric lists.
