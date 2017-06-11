@@ -2,9 +2,8 @@
 Default configuration and configuration related helpers.
 """
 
-import imp  # TODO: switch to importlib
 import os
-import sys
+import importlib.util
 from yozuch.view import view
 
 
@@ -95,14 +94,9 @@ class Config(dict):
                     self[key] = other[key]
 
     def update_from_directory(self, source_dir, **kwargs):
-        try:
-            fp, pathname, description = imp.find_module('config', [source_dir])
-        except ImportError:
+        spec = importlib.util.spec_from_file_location('user_config', os.path.join(source_dir, 'config.py'))
+        if spec is None:
             return
-        try:
-            if 'user_config' in sys.modules:
-                del sys.modules['user_config']
-            module = imp.load_module('user_config', fp, pathname, description)
-            self.update_from_object(module, **kwargs)
-        finally:
-            fp.close()
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        self.update_from_object(mod, **kwargs)
