@@ -17,4 +17,4 @@ Quick start
     cd myblog
     yozuch serve
 
-Open ``http://localhost:8000/`` in a browser to preview your blog.
+Open ``http://127.0.0.1:8000/`` in a browser to preview your blog.
