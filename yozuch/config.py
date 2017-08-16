@@ -2,6 +2,7 @@
 Default configuration and configuration related helpers.
 """
 
+import copy
 import os
 import importlib.util
 from yozuch.view import view
@@ -86,12 +87,13 @@ class Config(dict):
     def update_from_dict(self, other, replace_duplicates=True):
         for key, value in other.items():
             if key.isupper():
+                value = copy.deepcopy(value)
                 if key in self.KEYS_TO_MERGE and self.get(key):
                     if not replace_duplicates:
-                        other[key].update(self[key])
-                    self[key].update(other[key])
+                        value.update(self[key])
+                    self[key].update(value)
                 else:
-                    self[key] = other[key]
+                    self[key] = value
 
     def update_from_directory(self, source_dir, **kwargs):
         spec = importlib.util.spec_from_file_location('user_config', os.path.join(source_dir, 'config.py'))

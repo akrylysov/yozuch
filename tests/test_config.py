@@ -19,3 +19,11 @@ class ConfigTest(YozuchTestCase):
         self.assertEqual(config['THEME_NAME'], 'test')
 
         self.assertRaises(NameError, lambda: config.update_from_directory(os.path.join(self.ROOT_DIR, 'data-invalid')))
+
+    def test_mutate_default_config(self):
+        config = Config(os.path.join(self.ROOT_DIR, 'data'))
+        self.assertEqual(config['PAGE_FILE_EXTENSIONS'], ['.html', '.xml'])
+
+        config['PAGE_FILE_EXTENSIONS'][0] = None
+        config = Config(os.path.join(self.ROOT_DIR, 'data'))
+        self.assertEqual(config['PAGE_FILE_EXTENSIONS'], ['.html', '.xml'])
