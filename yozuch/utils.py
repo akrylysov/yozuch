@@ -53,7 +53,7 @@ def emptydir(path):
 
 
 def path_from_url(url):
-    path = url.lstrip('/').replace('/', os.path.sep)
+    path = url.lstrip('/').replace('/', os.path.sep).split('?')[0]
     filename = os.path.basename(path)
     return os.path.join(path, 'index.html') if not filename else path
 

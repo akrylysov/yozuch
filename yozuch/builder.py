@@ -26,8 +26,8 @@ def build(project_dir, config_overrides=None, validate=False, output_dir=None):
 
     generators = list(_init_generators(context))
 
-    env.globals['url_for'] = functools.partial(_url_for, generators, context.references)
-    env.globals['url_exists_for'] = functools.partial(_url_exists_for, generators)
+    env.globals['url_for'] = functools.partial(_url_for, context.references)
+    env.globals['url_exists_for'] = functools.partial(_url_exists_for, context.references)
 
     _generate_content(context, generators, env, context.output_path)
 
@@ -101,26 +101,16 @@ def _init_generators(context):
             raise LookupError('Unable to find generator with name "{}" for url "{}".'.format(generator, url_template))
 
 
-def _url_template_for(generators, name):
-    for gen in generators:
-        if gen.name == name:
-            return gen.url_template
-
-
-def _url_for(generators, references, name_or_url, **kwargs):
+def _url_for(references, name_or_url):
     if name_or_url in references:
         return references[name_or_url]
     if name_or_url.startswith('/') or is_external_url(name_or_url):
         return name_or_url
-    url_template = _url_template_for(generators, name_or_url)
-    if url_template is None:
-        raise LookupError('Unable to resolve URL for {} {}'.format(name_or_url, kwargs))
-    else:
-        return url_template.format(**kwargs)
+    raise LookupError('Unable to resolve URL for {}'.format(name_or_url))
 
 
-def _url_exists_for(generators, name):
-    return _url_template_for(generators, name) is not None
+def _url_exists_for(references, name_or_url):
+    return name_or_url in references
 
 
 def _generate_content(context, generators, env, output_dir):
@@ -129,6 +119,10 @@ def _generate_content(context, generators, env, output_dir):
             if entry.url in context.entries:
                 logger.warning('URL {} has been already registered {}'.format(entry.url, context.entries[entry.url]))
             context.entries[entry.url] = entry
+            if entry.id is not None:
+                if entry.id in context.references:
+                    logger.warning('Entry ID {} has been already registered'.format(entry.id))
+                context.references[entry.id] = entry.url
 
     for entry in context.entries.values():
         entry.publish(context)

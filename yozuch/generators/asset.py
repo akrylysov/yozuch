@@ -1,36 +1,34 @@
+import hashlib
 import os
 import shutil
-import fnmatch
 from yozuch.utils import makedirs, path_from_url
 from yozuch.generators import Generator
 from yozuch.entries import Entry
 
 
-def fnmatch_patterns(name, patterns):
-    return any([fnmatch.fnmatch(name, pattern) for pattern in patterns])
+def md5hash(path):
+    with open(path, 'rb') as f:
+        return hashlib.md5(f.read()).hexdigest()
 
 
 class AssetEntry(Entry):
 
-    def __init__(self, url, source_path):
-        super().__init__(url)
-        self.source_path = source_path
+    def __init__(self, url, asset_id, asset_full_path):
+        super().__init__(url, asset_id)
+        self.asset_full_path = asset_full_path
 
     def write(self, context, env, output_dir):
         path = os.path.join(output_dir, path_from_url(self.url))
         makedirs(os.path.dirname(path))
-        shutil.copyfile(self.source_path, path)
+        shutil.copyfile(self.asset_full_path, path)
 
 
 class AssetGenerator(Generator):
 
-    DEFAULT_IGNORE_PATTERNS = ['.DS_Store']
-
-    def __init__(self, url_template, name, ignore=DEFAULT_IGNORE_PATTERNS):
-        super().__init__(url_template, name)
-        self.ignore = ignore
-
     def generate(self, context):
-        for source_path, relpath in context.site.get('assets', []):
-            if not fnmatch_patterns(os.path.basename(source_path), self.ignore) and not fnmatch_patterns(relpath, self.ignore):
-                yield AssetEntry(self.url_template.format(filename=relpath), source_path)
+        for asset_id, asset_full_path, asset_rel_path in context.site.get('assets', []):
+            ext = os.path.splitext(asset_rel_path)[1]
+            url = self.url_template.format(filename=asset_rel_path)
+            if ext in context.config['ASSET_ADD_HASH']:
+                url = '{}?{}'.format(url, md5hash(asset_full_path))
+            yield AssetEntry(url, asset_id, asset_full_path)

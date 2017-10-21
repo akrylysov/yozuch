@@ -22,15 +22,8 @@ class DocumentGenerator(TemplateGenerator):
         super().__init__(url_template, name, template)
         self.source = source
 
-    def _generate_document(self, context, url_template, template, doc):
-        doc.url = format_url_from_object(url_template, doc)
-        entry = DocumentEntry(template, doc, template_vars={'document': doc})
-        self._register_reference(context, entry)
-        return entry
-
     def generate(self, context):
-        docs = context.site.get('documents', [])
-        if self.source is not None:
-            docs = filter(lambda d: d.id == self.source, docs)
+        docs = [doc for doc in context.site.get('documents', []) if self.source is None or doc.id == self.source]
         for doc in docs:
-            yield self._generate_document(context, self.url_template, self.template, doc)
+            doc.url = format_url_from_object(self.url_template, doc)
+            yield DocumentEntry(self.template, doc, template_vars={'document': doc})

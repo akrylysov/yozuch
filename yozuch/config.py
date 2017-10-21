@@ -46,6 +46,9 @@ class DefaultConfig(object):
 
     PAGE_FILE_EXTENSIONS = ['.html', '.xml']
 
+    ASSET_IGNORE = ['.DS_Store']
+    ASSET_ADD_HASH = ['.js', '.css']
+
     LOADERS = [
         ('yozuch.loaders.post.PostLoader', {}),
         ('yozuch.loaders.document.DocumentLoader', {}),

@@ -44,8 +44,9 @@ class Entry(LinkedListItemMixin):
         self._name = name
         self.slug = name
 
-    def __init__(self, url):
+    def __init__(self, url, id=None):
         self.url = url
+        self.id = id
 
     def publish(self, context):
         pass

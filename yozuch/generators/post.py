@@ -8,6 +8,4 @@ class PostGenerator(TemplateGenerator):
     def generate(self, context):
         for doc in context.site.get('posts', []):
             doc.url = format_url_from_object(self.url_template, doc)
-            entry = DocumentEntry(self.template, doc, template_vars={'post': doc})
-            self._register_reference(context, entry)
-            yield entry
+            yield DocumentEntry(self.template, doc, template_vars={'post': doc})
