@@ -168,6 +168,10 @@ div.minor {
     font-size: 0.9em;
 }
 
+div.system-message {
+    background-color: red;
+}
+
 /* Document */
 .post span.date {
     color: gray;
