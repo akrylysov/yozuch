@@ -27,8 +27,8 @@ class AssetGenerator(Generator):
 
     def generate(self, context):
         for asset_id, asset_full_path, asset_rel_path in context.site.get('assets', []):
-            ext = os.path.splitext(asset_rel_path)[1]
-            url = self.url_template.format(filename=asset_rel_path)
+            name, ext = os.path.splitext(asset_rel_path)
             if ext in context.config['ASSET_ADD_HASH']:
-                url = '{}?{}'.format(url, md5hash(asset_full_path))
+                asset_rel_path = '{}.{}{}'.format(name, md5hash(asset_full_path), ext)
+            url = self.url_template.format(filename=asset_rel_path)
             yield AssetEntry(url, asset_id, asset_full_path)
