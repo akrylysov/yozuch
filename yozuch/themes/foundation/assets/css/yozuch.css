@@ -172,6 +172,12 @@ div.system-message {
     background-color: red;
 }
 
+img.align-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* Document */
 .post span.date {
     color: gray;
