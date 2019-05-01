@@ -26,8 +26,9 @@ def validate(config, directory):
                 for url in regex.findall(f.read()):
                     url = url.replace(config['URL'], '')
                     url = url.split('#')[0]  # remove hash
-                    if not is_external_url(url):
-                        resource_path = os.path.join(directory, path_from_url(url))
-                        if not os.path.isfile(resource_path) \
-                                or os.path.basename(resource_path) not in os.listdir(os.path.dirname(resource_path)):
-                            logger.warning('Unable to find reference {} in {}'.format(url, relpath))
+                    if is_external_url(url):
+                        continue
+                    resource_path = os.path.join(directory, path_from_url(url))
+                    if not os.path.isfile(resource_path) \
+                            or os.path.basename(resource_path) not in os.listdir(os.path.dirname(resource_path)):
+                        logger.warning('Unable to find reference {} in {}'.format(url, relpath))

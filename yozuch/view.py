@@ -7,8 +7,6 @@ DEFAULT_NAMES = {
     'posts': 'yozuch.generators.post.PostGenerator',
     'tags-index': 'yozuch.generators.template.TemplateGenerator',
     'tags': 'yozuch.generators.tag.TagGenerator',
-    'categories-index': 'yozuch.generators.template.TemplateGenerator',
-    'categories': 'yozuch.generators.category.CategoryGenerator',
     'archive-index': 'yozuch.generators.template.TemplateGenerator',
     'atom-feed': 'yozuch.generators.template.TemplateGenerator',
     'pages': 'yozuch.generators.page.PageGenerator',

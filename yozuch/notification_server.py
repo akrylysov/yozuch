@@ -44,19 +44,20 @@ class WebSocketNotificationServer(object):
 
     def _handle_client(self, client):
         client.settimeout(None)
-        if self._handshake(client):
-            client.settimeout(2)
-            with self._lock:
-                self._clients.append(client)
-            while self._running:
-                try:
-                    data = client.recv(2048)
-                    if not data:
-                        break
-                except socket.timeout:
-                    pass
-                except Exception:
+        if not self._handshake(client):
+            return
+        client.settimeout(2)
+        with self._lock:
+            self._clients.append(client)
+        while self._running:
+            try:
+                data = client.recv(2048)
+                if not data:
                     break
+            except socket.timeout:
+                pass
+            except Exception:
+                break
         with self._lock:
             try:
                 self._clients.remove(client)

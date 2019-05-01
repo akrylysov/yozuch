@@ -188,13 +188,14 @@ class RstParser(object):
         }
 
         fields = self._find_node(doctree, docutils.nodes.field_list)
-        if fields is not None:
-            for field in fields:
-                name = field[0].astext().lower()
-                value = field[1].astext()
-                if name in parsers:
-                    value = parsers[name](value)
-                yield name, value
+        if fields is None:
+            return
+        for field in fields:
+            name = field[0].astext().lower()
+            value = field[1].astext()
+            if name in parsers:
+                value = parsers[name](value)
+            yield name, value
 
     def parse(self, source, filename, additional_meta=None):
         doctree = docutils.core.publish_doctree(

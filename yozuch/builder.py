@@ -119,10 +119,11 @@ def _generate_content(context, generators, env, output_dir):
             if entry.url in context.entries:
                 logger.warning('URL {} has been already registered {}'.format(entry.url, context.entries[entry.url]))
             context.entries[entry.url] = entry
-            if entry.id is not None:
-                if entry.id in context.references:
-                    logger.warning('Entry ID {} has been already registered'.format(entry.id))
-                context.references[entry.id] = entry.url
+            if entry.id is None:
+                continue
+            if entry.id in context.references:
+                logger.warning('Entry ID {} has been already registered'.format(entry.id))
+            context.references[entry.id] = entry.url
 
     for entry in context.entries.values():
         entry.publish(context)

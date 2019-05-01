@@ -22,8 +22,8 @@ class ConfigTest(YozuchTestCase):
 
     def test_mutate_default_config(self):
         config = Config(os.path.join(self.ROOT_DIR, 'data'))
-        self.assertEqual(config['PAGE_FILE_EXTENSIONS'], ['.html', '.xml'])
+        self.assertEqual(config['PAGE_FILE_EXTENSIONS'], {'.html', '.xml'})
 
-        config['PAGE_FILE_EXTENSIONS'][0] = None
+        config['PAGE_FILE_EXTENSIONS'].add(None)
         config = Config(os.path.join(self.ROOT_DIR, 'data'))
-        self.assertEqual(config['PAGE_FILE_EXTENSIONS'], ['.html', '.xml'])
+        self.assertEqual(config['PAGE_FILE_EXTENSIONS'], {'.html', '.xml'})

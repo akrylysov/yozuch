@@ -35,8 +35,8 @@ class DefaultConfig(object):
     RST_OPTIONS = {
         'meta_date_format': '%Y-%m-%d',
         'filename_meta_formats': [
-            '(?P<date>\d{4}-\d{2}-\d{2})-(?P<slug>.*)',
-            '(?P<slug>.*)'
+            r'(?P<date>\d{4}-\d{2}-\d{2})-(?P<slug>.*)',
+            r'(?P<slug>.*)'
         ],
         'filename_meta_date_format': '%Y-%m-%d',
         'file_extensions': ['.rst'],
@@ -44,10 +44,10 @@ class DefaultConfig(object):
         'permalink_text': '&#x00b6;',
     }
 
-    PAGE_FILE_EXTENSIONS = ['.html', '.xml']
+    PAGE_FILE_EXTENSIONS = {'.html', '.xml'}
 
-    ASSET_IGNORE = ['.DS_Store']
-    ASSET_ADD_HASH = ['.js', '.css']
+    ASSET_IGNORE = {'.DS_Store'}
+    ASSET_ADD_HASH = {'.js', '.css'}
 
     LOADERS = [
         ('yozuch.loaders.post.PostLoader', {}),
@@ -89,14 +89,15 @@ class Config(dict):
 
     def update_from_dict(self, other, replace_duplicates=True):
         for key, value in other.items():
-            if key.isupper():
-                value = copy.deepcopy(value)
-                if key in self.KEYS_TO_MERGE and self.get(key):
-                    if not replace_duplicates:
-                        value.update(self[key])
-                    self[key].update(value)
-                else:
-                    self[key] = value
+            if not key.isupper():
+                continue
+            value = copy.deepcopy(value)
+            if key in self.KEYS_TO_MERGE and self.get(key):
+                if not replace_duplicates:
+                    value.update(self[key])
+                self[key].update(value)
+            else:
+                self[key] = value
 
     def update_from_directory(self, source_dir, **kwargs):
         spec = importlib.util.spec_from_file_location('user_config', os.path.join(source_dir, 'config.py'))

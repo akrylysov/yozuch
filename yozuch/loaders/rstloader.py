@@ -34,11 +34,13 @@ class RstLoader(object):
             if filename.startswith('~'):
                 continue
             path = os.path.join(content_dir, filename)
-            if os.path.isfile(path):
-                name, ext = os.path.splitext(filename)
-                if ext in self._options['file_extensions']:
-                    with codecs.open(path, 'r', 'utf-8-sig') as f:
-                        parser = RstParser(self._options)
-                        doc = parser.parse(f.read(), filename, additional_meta=self._parse_filename_meta(name))
-                        if doc is not None:
-                            yield doc
+            if not os.path.isfile(path):
+                continue
+            name, ext = os.path.splitext(filename)
+            if ext not in self._options['file_extensions']:
+                continue
+            with codecs.open(path, 'r', 'utf-8-sig') as f:
+                parser = RstParser(self._options)
+                doc = parser.parse(f.read(), filename, additional_meta=self._parse_filename_meta(name))
+                if doc is not None:
+                    yield doc

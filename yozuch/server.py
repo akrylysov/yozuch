@@ -26,7 +26,7 @@ def serve(directory, build_command, ports):
         try:
             build_command(output_dir)
             autoreload_server.broadcast_message('reload')
-        except:
+        except Exception:
             traceback.print_exc()
 
     stop_watcher = watch(directory, cmd)
