@@ -29,10 +29,10 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        'docutils>=0.14',
-        'pygments>=2.2.0',
-        'jinja2>=2.10',
-        'watchdog>=0.9.0',
+        'docutils>=0.16',
+        'pygments>=2.6.1',
+        'jinja2>=2.11.2',
+        'watchdog>=0.10.3',
     ],
     entry_points={
         'console_scripts': [
