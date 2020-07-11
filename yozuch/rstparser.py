@@ -87,11 +87,12 @@ def get_html_translator(rooturl, permalink_text, references, entries):
             super().depart_title(node)
 
         def visit_image(self, node):
+            if node.get('alt') is None:
+                node['alt'] = ''
             if rooturl is not None:
                 uri = node['uri']
                 if uri.find('://') == -1:
                     node['uri'] = urljoin(rooturl, uri)
-            node['alt'] = ''
             super().visit_image(node)
 
         def visit_reference(self, node):
