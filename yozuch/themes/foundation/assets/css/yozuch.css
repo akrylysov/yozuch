@@ -24,6 +24,10 @@ ul li p {
     margin: 0;
 }
 
+ul ul {
+    list-style-type: circle;
+}
+
 .inline-list {
     margin: 0 auto 1.0625rem auto;
     margin-left: -1.375rem;
