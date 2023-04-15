@@ -24,6 +24,10 @@ ul li p {
     margin: 0;
 }
 
+ol li p {
+    margin: 0;
+}
+
 ul ul {
     list-style-type: circle;
 }
