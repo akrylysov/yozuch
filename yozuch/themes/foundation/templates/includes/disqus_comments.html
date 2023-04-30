@@ -3,6 +3,11 @@
     <br />
     <div id="disqus_thread"></div>
     <script>
+        {% if post %}
+        var disqus_config = function() {
+            this.page.identifier = '{{ post.url }}';
+        };
+        {% endif %}
         (function() { // DON'T EDIT BELOW THIS LINE
             var d = document, s = d.createElement('script');
             s.src = 'https://{{ theme.disqus_shortname }}.disqus.com/embed.js';
