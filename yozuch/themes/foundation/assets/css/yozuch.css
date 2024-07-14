@@ -186,6 +186,19 @@ img.align-center {
     margin-right: auto;
 }
 
+div.figure p.caption {
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+div.figure img:has(+p.caption) {
+    margin-bottom: 0.25em;
+}
+
+div.figure img + p.caption {
+    margin-bottom: 2.25em;
+}
+
 /* Document */
 .post span.date {
     color: gray;
