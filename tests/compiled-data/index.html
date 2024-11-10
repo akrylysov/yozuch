@@ -56,12 +56,6 @@ item uses two lines.</p></li>
 <div class="line">the source file.</div>
 </div>
 <table>
-<colgroup>
-<col style="width: 43%" />
-<col style="width: 21%" />
-<col style="width: 18%" />
-<col style="width: 18%" />
-</colgroup>
 <thead>
 <tr><th class="head"><p>Header row, column 1
 (header rows optional)</p></th>
@@ -84,11 +78,6 @@ item uses two lines.</p></li>
 </tbody>
 </table>
 <table>
-<colgroup>
-<col style="width: 29%" />
-<col style="width: 29%" />
-<col style="width: 41%" />
-</colgroup>
 <thead>
 <tr><th class="head"><p>A</p></th>
 <th class="head"><p>B</p></th>
@@ -114,16 +103,16 @@ item uses two lines.</p></li>
 </tr>
 </tbody>
 </table>
-<pre class="code python literal-block"><code><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">'yozuch'</span><span class="p">)</span>
+<pre class="code python literal-block"><code><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">'yozuch'</span><span class="p">)</span><span class="w">
 
- <span class="k">class</span> <span class="nc">RejectFilter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Filter</span><span class="p">):</span>
+</span> <span class="k">class</span> <span class="nc">RejectFilter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Filter</span><span class="p">):</span><span class="w">
 
-     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reject</span><span class="p">):</span>
-         <span class="n">logging</span><span class="o">.</span><span class="n">Filter</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-         <span class="bp">self</span><span class="o">.</span><span class="n">reject</span> <span class="o">=</span> <span class="n">reject</span>
+</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reject</span><span class="p">):</span><span class="w">
+</span>         <span class="n">logging</span><span class="o">.</span><span class="n">Filter</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="w">
+</span>         <span class="bp">self</span><span class="o">.</span><span class="n">reject</span> <span class="o">=</span> <span class="n">reject</span><span class="w">
 
-     <span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
-         <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">reject</span><span class="p">(</span><span class="n">record</span><span class="p">)</span></code></pre>
+</span>     <span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span><span class="w">
+</span>         <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">reject</span><span class="p">(</span><span class="n">record</span><span class="p">)</span></code></pre>
 <p><a class="reference external" href="/url1.html">Internal page reference</a>
 <a class="reference external" href="/blog/2011/01/01/post-readmore/">Internal post reference</a></p>
 <img alt="" src="image.png" />
@@ -165,10 +154,10 @@ item uses two lines.</p></li>
         
         
             <p>foo</p>
-<div class="section" id="section">
+<section id="section">
 <h3>Section<a class="headerlink" href="#section" title="Permalink to this headline">&#x00b6;</a></h3>
 <p>bar</p>
-</div>
+
             <div class="readmore"><a href="/blog/2011/01/01/post-readmore/">Read more&nbsp;→</a></div>
         
         

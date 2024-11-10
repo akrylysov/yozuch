@@ -8,7 +8,7 @@ from yozuch.project_init import init
 from yozuch.loaders.rstloader import RstLoader
 
 
-class CmdArguments(object):
+class CmdArguments:
 
     def __init__(self, **kwargs):
         for key, value in kwargs.items():

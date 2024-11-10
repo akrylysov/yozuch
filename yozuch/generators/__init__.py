@@ -3,7 +3,7 @@ Content generators.
 """
 
 
-class Generator(object):
+class Generator:
 
     def __init__(self, url_template, name):
         self.url_template = url_template

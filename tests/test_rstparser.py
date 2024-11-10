@@ -20,7 +20,7 @@ class RstParserTest(YozuchTestCase):
         return doc
 
     def setUp(self):
-        super(RstParserTest, self).setUp()
+        super().setUp()
         self.parser = RstParser(self.config['RST_OPTIONS'])
 
     def test_post(self):
@@ -53,8 +53,8 @@ class RstParserTest(YozuchTestCase):
     def test_post_readmore(self):
         doc = self.parse(os.path.join('posts', 'post-readmore.rst'))
         self.assertEqual(doc.title, 'ReadMore')
-        self.assertEqual(doc.content, '<p>foo</p>\n<div class="section" id="section">\n<h3>Section<a class="headerlink" href="#section" title="Permalink to this headline">&#x00b6;</a></h3>\n<p>bar</p>\n<p>baz</p>\n</div>\n')
-        self.assertEqual(doc.summary, '<p>foo</p>\n<div class="section" id="section">\n<h3>Section<a class="headerlink" href="#section" title="Permalink to this headline">&#x00b6;</a></h3>\n<p>bar</p>\n</div>')
+        self.assertEqual(doc.content, '<p>foo</p>\n<section id="section">\n<h3>Section<a class="headerlink" href="#section" title="Permalink to this headline">&#x00b6;</a></h3>\n<p>bar</p>\n<p>baz</p>\n</section>\n')
+        self.assertEqual(doc.summary, '<p>foo</p>\n<section id="section">\n<h3>Section<a class="headerlink" href="#section" title="Permalink to this headline">&#x00b6;</a></h3>\n<p>bar</p>\n')
         self.assertEqual(doc.date, datetime.datetime(2011, 1, 1))
         self.assertFalse(self._is_logger_errors())
 

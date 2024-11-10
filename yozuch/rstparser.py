@@ -122,7 +122,7 @@ def get_html_translator(rooturl, permalink_text, references, entries):
     return _HTMLTranslator
 
 
-class Document(object):
+class Document:
 
     def __init__(self, doctree, filename, title):
         self.doctree = doctree
@@ -149,13 +149,13 @@ class Document(object):
     summary = None
 
 
-class RstParser(object):
+class RstParser:
 
     def __init__(self, options):
         self._options = options
 
     def _find_node(self, doctree, node_class, remove=True):
-        for node in doctree.traverse(node_class):
+        for node in doctree.findall(node_class):
             if remove:
                 node.parent.remove(node)
             return node

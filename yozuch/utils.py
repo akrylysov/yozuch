@@ -70,7 +70,7 @@ def is_external_url(url):
     if url.startswith('//'):
         return True
     schemes = ('http', 'https', 'skype', 'mailto')
-    return any([url.startswith(scheme + ':') for scheme in schemes])
+    return any(url.startswith(scheme + ':') for scheme in schemes)
 
 
 def import_module(module_name):

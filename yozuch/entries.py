@@ -17,7 +17,7 @@ def linkitems(objs, reverse=False):
     return objs
 
 
-class LinkedListItemMixin(object):
+class LinkedListItemMixin:
     nextitem = None
     previtem = None
 

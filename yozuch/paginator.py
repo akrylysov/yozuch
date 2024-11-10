@@ -14,7 +14,7 @@ class PaginatorPage(LinkedListItemMixin):
         self.url = None
 
 
-class Paginator(object):
+class Paginator:
 
     def __init__(self, entries, entries_per_page):
         self.number_of_pages = int(math.ceil(float(len(entries)) / entries_per_page))

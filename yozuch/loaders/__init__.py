@@ -1,4 +1,4 @@
-class Loader(object):
+class Loader:
     name = None
 
     def load(self, context, path):

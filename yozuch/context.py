@@ -3,7 +3,7 @@ import os
 from yozuch.config import Config, PACKAGE_DIR
 
 
-class Context(object):
+class Context:
 
     def __init__(self, config_overrides, project_path, output_dir=None):
         self.config = config = Config(project_path, config_overrides)

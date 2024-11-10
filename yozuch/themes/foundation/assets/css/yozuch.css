@@ -154,20 +154,20 @@ div.line-block {
     margin-bottom: 1.25rem;
 }
 
-div.note {
+.note {
     font-style: italic;
     margin-bottom: 1.25rem;
 }
 
-div.note p.admonition-title {
+.note p.admonition-title {
     display: inline;
 }
 
-div.note p.admonition-title + p {
+.note p.admonition-title + p {
     display: inline;
 }
 
-div.note p.admonition-title:after {
+.note p.admonition-title:after {
     content: ": ";
 }
 

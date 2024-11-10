@@ -11,7 +11,7 @@ from yozuch.view import view
 PACKAGE_DIR = os.path.dirname(__file__)
 
 
-class DefaultConfig(object):
+class DefaultConfig:
 
     DEBUG = False
 

@@ -9,7 +9,7 @@ import datetime
 from yozuch.rstparser import RstParser
 
 
-class RstLoader(object):
+class RstLoader:
 
     def __init__(self, options):
         self._options = options

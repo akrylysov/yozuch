@@ -29,10 +29,10 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        'docutils>=0.16',
-        'pygments>=2.6.1',
-        'jinja2>=2.11.2',
-        'watchdog>=0.10.3',
+        'docutils>=0.21',
+        'pygments>=2.18',
+        'jinja2>=3.1',
+        'watchdog>=6.0',
     ],
     entry_points={
         'console_scripts': [
@@ -50,6 +50,6 @@ setup(
         'Topic :: Communications',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.13',
     ],
 )

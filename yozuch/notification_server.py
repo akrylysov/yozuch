@@ -17,7 +17,7 @@ def _parse_headers(data):
     return headers
 
 
-class WebSocketNotificationServer(object):
+class WebSocketNotificationServer:
 
     HANDSHAKE_RESPONSE = 'HTTP/1.1 101 Switching Protocols\r\n' + \
         'Upgrade: websocket\r\n' + \
